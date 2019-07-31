@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_rev_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshellie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/22 12:00:37 by lshellie          #+#    #+#             */
-/*   Updated: 2019/07/22 12:00:38 by lshellie         ###   ########.fr       */
+/*   Created: 2019/07/30 12:25:40 by lshellie          #+#    #+#             */
+/*   Updated: 2019/07/30 12:25:41 by lshellie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "libft.h"
 
-int		error(t_stack **lst)
+char	*ft_revstr(char *s)
 {
-	if (lst && *lst)
-		free_stack(lst);
-	ft_putstr("Error\n");
-	return (-1);
-}
+    unsigned int	i;
+    unsigned int	j;
+    char			c;
 
-int		error_commands(t_command **lst)
-{
-	if (lst && *lst)
-		free_commands(lst);
-	ft_putstr("Error\n");
-	return (-1);
+    i = 0;
+    j = 0;
+    while (s[j] != 0)
+        ++j;
+    --j;
+    while (i < j)
+    {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+        --j;
+        ++i;
+    }
+    return (s);
 }

@@ -12,6 +12,19 @@
 
 #include "checker.h"
 
+int			is_sorted(t_stack *a, t_stack *b)
+{
+	if (b)
+		return (0);
+	while (a->next)
+	{
+		if (a->num < a->next->num)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 int			is_number(char *str)
 {
 	if (!*str)
@@ -27,22 +40,62 @@ int			is_number(char *str)
 	return (1);
 }
 
-int			check_duplicates(t_stack *lst)
+int			check_duplicates(int argc, char **argv)
 {
-	t_stack	*cur;
+	int i;
+	int j;
 
-	if (!lst)
-		return (0);
-	while (lst->next)
+	i = 0;
+	while (++i < argc)
 	{
-		cur = lst->next;
-		while (cur)
+		j = i;
+		while (++j < argc)
 		{
-			if (cur->num == lst->num)
+			if (ft_strcmp(argv[i], argv[j]) == 0)
 				return (0);
-			cur = cur->next;
 		}
-		lst = lst->next;
 	}
+	return (1);
+}
+
+int			check_overflow(char *str)
+{
+	t_num	*num;
+	t_num	*limit;
+	int 	res;
+
+	if (*str == '-')
+	{
+		num = make_num(++str);
+		limit = make_num("2147483648");
+		res = compare_nums(num, limit);
+	}
+	else
+	{
+		num = make_num(str);
+		limit = make_num("2147483647");
+		res = compare_nums(num, limit);
+	}
+	free_num(num);
+	free_num(limit);
+	if (res == 1)
+		return (0);
+	return (1);
+}
+
+int			check_input(int argc, char **argv)
+{
+	int i;
+
+	i = argc;
+	while (--i)
+	{
+		if (!(is_number(argv[i])))
+			return (0);
+		else if (!(check_overflow(argv[i])))
+			return (0);
+	}
+	if (!(check_duplicates(argc, argv)))
+		return (0);
 	return (1);
 }

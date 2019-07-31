@@ -38,25 +38,14 @@ void			free_commands(t_command **lst)
 	*lst = 0;
 }
 
-int				check_commands(t_command **lst)
+int				check_commands(char *str)
 {
-	t_command		*cur;
-
-	if (!*lst)
-		return (1);
-	cur = *lst;
-	while (cur)
-	{
-		if (ft_strcmp("sa\n", cur->str) && ft_strcmp("sb\n", cur->str) &&
-		ft_strcmp("ss\n", cur->str) && ft_strcmp("pa\n", cur->str) &&
-		ft_strcmp("pb\n", cur->str) && ft_strcmp("ra\n", cur->str) &&
-		ft_strcmp("rb\n", cur->str) && ft_strcmp("rr\n", cur->str) &&
-		ft_strcmp("rrb\n", cur->str) && ft_strcmp("rra\n", cur->str) &&
-		ft_strcmp("rrr\n", cur->str))
-			return (error_commands(lst));
-		cur = cur->next;
-	}
-	return (1);
+	return  (!ft_strcmp("sa", str) || !ft_strcmp("sb", str) ||
+		!ft_strcmp("ss", str) || !ft_strcmp("pa", str) ||
+		!ft_strcmp("pb", str) || !ft_strcmp("ra", str) ||
+		!ft_strcmp("rb", str) || !ft_strcmp("rr", str) ||
+		!ft_strcmp("rrb", str) || !ft_strcmp("rra", str) ||
+		!ft_strcmp("rrr", str));
 }
 
 void			make_commands(t_command **lst, char *str)

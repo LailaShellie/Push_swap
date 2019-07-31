@@ -18,9 +18,6 @@ int			swap_a(t_stack **a)
 	t_stack		*last2;
 	t_stack		*end;
 
-	end = 0;
-	last1 = 0;
-	last2 = 0;
 	if (!a || !(*a) || get_len(*a) == 1)
 		return (0);
 	last1 = take_last(a);

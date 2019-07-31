@@ -17,10 +17,7 @@ int			swap_b(t_stack **b)
 	t_stack		*last1;
 	t_stack		*last2;
 	t_stack		*end;
-
-	end = 0;
-	last1 = 0;
-	last2 = 0;
+	
 	if (!b || !(*b) || get_len(*b) == 1)
 		return (0);
 	last1 = take_last(b);

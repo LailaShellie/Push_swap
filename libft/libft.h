@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # include <string.h>
+# define BUFF_SIZE 2
+# define MAX_FD 1025
 
 typedef	struct		s_list
 {
@@ -92,5 +94,7 @@ unsigned long int	ft_fast_bin_pow(unsigned long int a,
 		unsigned long int b);
 unsigned long int	ft_fast_bit_pow(unsigned long int a,
 		unsigned long int b);
+int                 get_next_line(const int fd, char **line);
+char                *ft_revstr(char *s);
 
 #endif

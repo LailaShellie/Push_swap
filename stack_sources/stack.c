@@ -87,6 +87,30 @@ t_stack			*take_last(t_stack **stack)
 	return (cur);
 }
 
+void			show_both(t_stack *a, t_stack *b)
+{
+	if (!b && !a)
+		return;
+	else
+	{
+		if (a && !b)
+		{
+			show_both(a->next, 0);
+			printf("%d\t \n", a->num);
+		}
+		else if (b && !a)
+		{
+			show_both(0, b->next);
+			printf(" \t%d\n", b->num);
+		}
+		else if (a && b)
+		{
+			show_both(a->next, b->next);
+			printf("%d\t%d\n", a->num, b->num);
+		}
+	}
+}
+
 void			show_stack(t_stack *stack)
 {
 	if (stack == 0)

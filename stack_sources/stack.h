@@ -26,6 +26,7 @@ typedef struct		s_stack
 }					t_stack;
 
 void				show_stack(t_stack *stack);
+void				show_both(t_stack *a, t_stack *b);
 
 t_stack				*new_node(int num);
 void				free_stack(t_stack **stack);

@@ -13,28 +13,6 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static	char	*ft_revstr(char *s)
-{
-	unsigned int	i;
-	unsigned int	j;
-	char			c;
-
-	i = 0;
-	j = 0;
-	while (s[j] != 0)
-		++j;
-	--j;
-	while (i < j)
-	{
-		c = s[i];
-		s[i] = s[j];
-		s[j] = c;
-		--j;
-		++i;
-	}
-	return (s);
-}
-
 static int		ft_count(int n)
 {
 	int len;
