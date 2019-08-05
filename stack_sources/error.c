@@ -10,20 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "stack.h"
 
 int		error(t_stack **lst)
 {
 	if (lst && *lst)
 		free_stack(lst);
-	ft_putstr("Error\n");
-	return (-1);
-}
-
-int		error_commands(t_command **lst)
-{
-	if (lst && *lst)
-		free_commands(lst);
 	ft_putstr("Error\n");
 	return (-1);
 }

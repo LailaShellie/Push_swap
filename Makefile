@@ -10,17 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-CHECKER_SRC = $(addprefix checker_sources/, checker.c validation.c error.c commands.c check_overflow.c)
+CHECKER_SRC = $(addprefix checker_sources/, checker.c commands.c)
 
-PUSH_SWAP_SRC = $(addprefix push_swap_sources/, push_swap_main.c solve_three.c)
+PUSH_SWAP_SRC = $(addprefix push_swap_sources/, push_swap_main.c \
+			solve_three.c solve_hundred.c calculate.c execute.c)
 
-STACK_SRC = $(addprefix stack_sources/, a_commands.c b_commands.c both_commands.c stack.c)
+STACK_SRC = $(addprefix stack_sources/, a_commands.c b_commands.c both_commands.c stack.c \
+			validation.c  check_overflow.c error.c)
 
-CHECKER_OBJ = checker.o validation.o error.o commands.o check_overflow.o
+CHECKER_OBJ = checker.o commands.o
 
-PUSH_SWAP_OBJ = push_swap_main.o solve_three.o
+PUSH_SWAP_OBJ = push_swap_main.o solve_three.o solve_hundred.o calculate.o execute.o
 
-STACK_OBJ = a_commands.o b_commands.o both_commands.o stack.o
+STACK_OBJ = a_commands.o b_commands.o both_commands.o stack.o validation.o check_overflow.o error.o
 
 STACK_HEADER = stack_sources/stack.h
 
@@ -39,7 +41,7 @@ all: $(CHECKER_NAME) $(PUSH_SWAP_NAME)
 $(CHECKER_NAME): $(LIB) $(CHECKER_OBJ) $(STACK_OBJ)
 	gcc -Wall -Wextra -Werror -o $@ -L. $(LIB) $(CHECKER_OBJ) $(STACK_OBJ)
 $(PUSH_SWAP_NAME): $(PUSH_SWAP_OBJ)
-	gcc -Wall -Wextra -Werror -o $@ -L. $(LIB) $(PUSH_SWAP_OBJ) $(STACK_OBJ) validation.o error.o commands.o check_overflow.o
+	gcc -Wall -Wextra -Werror -o $@ -L. $(LIB) $(PUSH_SWAP_OBJ) $(STACK_OBJ)
 $(STACK_OBJ):
 	gcc -I $(STACK_HEADER) -c $(STACK_SRC)
 $(CHECKER_OBJ):

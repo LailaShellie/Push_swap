@@ -12,7 +12,7 @@
 
 #include "stack.h"
 
-int			swap_a(t_stack **a)
+int			swap_a(t_stack **a, int flag)
 {
 	t_stack		*last1;
 	t_stack		*last2;
@@ -34,10 +34,12 @@ int			swap_a(t_stack **a)
 		last1->next = last2;
 		last2->next = 0;
 	}
+	if (flag == PRINT)
+		ft_putstr("sa\n");
 	return (1);
 }
 
-int			push_a(t_stack **a, t_stack **b)
+int			push_a(t_stack **a, t_stack **b, int flag)
 {
 	t_stack		*last_a;
 	t_stack		*last_b;
@@ -55,10 +57,12 @@ int			push_a(t_stack **a, t_stack **b)
 		last_a->next = last_b;
 		last_b->next = 0;
 	}
+	if (flag == PRINT)
+		ft_putstr("pa\n");
 	return (1);
 }
 
-int			rotate_a(t_stack **a)
+int			reverse_rotate_a(t_stack **a, int flag)
 {
 	t_stack		*next;
 	t_stack		*first;
@@ -74,10 +78,12 @@ int			rotate_a(t_stack **a)
 	first->next = 0;
 	tmp = find_last(*a);
 	tmp->next = first;
+	if (flag == PRINT)
+		ft_putstr("rra\n");
 	return (1);
 }
 
-int			reverse_rotate_a(t_stack **a)
+int			rotate_a(t_stack **a, int flag)
 {
 	t_stack		*last;
 	t_stack		*first;
@@ -90,5 +96,7 @@ int			reverse_rotate_a(t_stack **a)
 	last = take_last(&first);
 	*a = last;
 	last->next = first;
+	if (flag == PRINT)
+		ft_putstr("ra\n");
 	return (1);
 }

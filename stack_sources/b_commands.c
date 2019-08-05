@@ -12,12 +12,12 @@
 
 #include "stack.h"
 
-int			swap_b(t_stack **b)
+int			swap_b(t_stack **b, int flag)
 {
 	t_stack		*last1;
 	t_stack		*last2;
 	t_stack		*end;
-	
+
 	if (!b || !(*b) || get_len(*b) == 1)
 		return (0);
 	last1 = take_last(b);
@@ -34,10 +34,12 @@ int			swap_b(t_stack **b)
 		last1->next = last2;
 		last2->next = 0;
 	}
+	if (flag == PRINT)
+		ft_putstr("sb\n");
 	return (1);
 }
 
-int			push_b(t_stack **a, t_stack **b)
+int			push_b(t_stack **a, t_stack **b, int flag)
 {
 	t_stack		*last_a;
 	t_stack		*last_b;
@@ -55,10 +57,12 @@ int			push_b(t_stack **a, t_stack **b)
 		last_b->next = last_a;
 		last_a->next = 0;
 	}
+	if (flag == PRINT)
+		ft_putstr("pb\n");
 	return (1);
 }
 
-int			rotate_b(t_stack **b)
+int			reverse_rotate_b(t_stack **b, int flag)
 {
 	t_stack		*next;
 	t_stack		*first;
@@ -74,10 +78,12 @@ int			rotate_b(t_stack **b)
 	first->next = 0;
 	tmp = find_last(*b);
 	tmp->next = first;
+	if (flag == PRINT)
+		ft_putstr("rrb\n");
 	return (1);
 }
 
-int			reverse_rotate_b(t_stack **b)
+int			rotate_b(t_stack **b, int flag)
 {
 	t_stack		*last;
 	t_stack		*first;
@@ -90,5 +96,7 @@ int			reverse_rotate_b(t_stack **b)
 	last = take_last(&first);
 	*b = last;
 	last->next = first;
+	if (flag == PRINT)
+		ft_putstr("rb\n");
 	return (1);
 }

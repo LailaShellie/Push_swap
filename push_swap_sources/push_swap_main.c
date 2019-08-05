@@ -21,6 +21,8 @@ int		solve(t_stack **a)
 	i = get_len(*a);
 	if (i <= 3)
 		return (solve_three(a, &b));
+	else
+		return (solve_hundred(a, &b));
 	return (0);
 }
 
@@ -40,7 +42,8 @@ int 	main(int argc, char **argv)
 			{
 				first = new_node(ft_atoi(argv[argc]));
 				cur = first;
-			} else
+			}
+			else
 			{
 				cur->next = new_node(ft_atoi(argv[argc]));
 				cur = cur->next;
@@ -49,6 +52,6 @@ int 	main(int argc, char **argv)
 		solve(&first);
 		free_stack(&first);
 	}
-	ft_putstr("\n");
+	write(1, "\n", 1);
 	return (0);
 }

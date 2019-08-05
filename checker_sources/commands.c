@@ -12,6 +12,14 @@
 
 #include "checker.h"
 
+int		error_commands(t_command **lst)
+{
+	if (lst && *lst)
+		free_commands(lst);
+	ft_putstr("Error\n");
+	return (-1);
+}
+
 t_command		*new_command(char *str)
 {
 	t_command		*new;

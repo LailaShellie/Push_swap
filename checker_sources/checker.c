@@ -15,27 +15,27 @@
 void		exec(t_stack **a, t_stack **b, char *str)
 {
 	if (ft_strcmp("sa", str) == 0)
-		swap_a(a);
+		swap_a(a, NOPRINT);
 	else if (ft_strcmp("sb", str) == 0)
-		swap_b(b);
+		swap_b(b, NOPRINT);
 	else if (ft_strcmp("ss", str) == 0)
-		swap_all(a, b);
+		swap_all(a, b, NOPRINT);
 	else if (ft_strcmp("pa", str) == 0)
-		push_a(a, b);
+		push_a(a, b, NOPRINT);
 	else if (ft_strcmp("pb", str) == 0)
-		push_b(a, b);
+		push_b(a, b, NOPRINT);
 	else if (ft_strcmp("ra", str) == 0)
-		rotate_a(a);
+		rotate_a(a, NOPRINT);
 	else if (ft_strcmp("rb", str) == 0)
-		rotate_b(b);
+		rotate_b(b, NOPRINT);
 	else if (ft_strcmp("rr", str) == 0)
-		rotate_all(a, b);
+		rotate_all(a, b, NOPRINT);
 	else if (ft_strcmp("rra", str) == 0)
-		reverse_rotate_a(a);
+		reverse_rotate_a(a, NOPRINT);
 	else if (ft_strcmp("rrb", str) == 0)
-		reverse_rotate_b(b);
+		reverse_rotate_b(b, NOPRINT);
 	else if (ft_strcmp("rrr", str) == 0)
-		reverse_rotate_all(a, b);
+		reverse_rotate_all(a, b, NOPRINT);
 }
 
 int			try_solve(t_stack **a, t_command **com)
@@ -61,13 +61,14 @@ int			check(t_stack **stack)
 	t_command	*com;
 
 	com = 0;
-    while (get_next_line(1, &str))
+	str = 0;
+    while (get_next_line(0, &str))
     {
-		if (ft_strcmp("", str) == 0)
+		if (str && ft_strcmp("", str) == 0)
 			break;
-		if (!(check_commands(str)))
+		if (str && !(check_commands(str)))
 			return (error_commands(&com));
-		else
+		else if (str)
 			make_commands(&com, str);
 		free(str);
 	}

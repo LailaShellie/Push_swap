@@ -12,17 +12,23 @@
 
 #include "stack.h"
 
-int			swap_all(t_stack **a, t_stack **b)
+int			swap_all(t_stack **a, t_stack **b, int flag)
 {
-	return (swap_a(a) + swap_b(b));
+	if (flag == PRINT)
+		ft_putstr("ss\n");
+	return (swap_a(a, NOPRINT) + swap_b(b, flag));
 }
 
-int			rotate_all(t_stack **a, t_stack **b)
+int			rotate_all(t_stack **a, t_stack **b, int flag)
 {
-	return (rotate_a(a) + rotate_b(b));
+	if (flag == PRINT)
+		ft_putstr("rr\n");
+	return (rotate_a(a, NOPRINT) + rotate_b(b, NOPRINT));
 }
 
-int 		reverse_rotate_all(t_stack **a, t_stack **b)
+int 		reverse_rotate_all(t_stack **a, t_stack **b, int flag)
 {
-	return (reverse_rotate_a(a) + reverse_rotate_b(b));
+	if (flag == PRINT)
+		ft_putstr("rrr\n");
+	return (reverse_rotate_a(a, NOPRINT) + reverse_rotate_b(b, NOPRINT));
 }

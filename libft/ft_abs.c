@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshellie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/21 19:42:58 by lshellie          #+#    #+#             */
-/*   Updated: 2019/07/21 19:43:01 by lshellie         ###   ########.fr       */
+/*   Created: 2019/08/03 16:14:09 by lshellie          #+#    #+#             */
+/*   Updated: 2019/08/03 16:14:10 by lshellie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _CHECKER_H
-# define _CHECKER_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include "../stack_sources/stack.h"
-
-typedef struct			s_command
+int 				ft_abs(int a)
 {
-	char				*str;
-	struct s_command	*next;
-}						t_command;
-
-int						error_commands(t_command **lst);
-int						check_commands(char *str);
-void					make_commands(t_command **lst, char *str);
-void					free_commands(t_command **lst);
-
-#endif
+	return (a >= 0 ? a : -a);
+}
