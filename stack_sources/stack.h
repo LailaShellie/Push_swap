@@ -28,6 +28,7 @@ typedef struct			s_turns
 	int					get_in_b;
 	int 				set_in_a;
 	int 				place;
+	int 				doubles;
 	int 				sum;
 	int					num;
 }						t_turns;

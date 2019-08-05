@@ -12,10 +12,30 @@
 
 #include "push_swap.h"
 
+void	calculate_doubles(t_turns *tmp)
+{
+	if ((tmp->set_in_a > 0 && tmp->get_in_b > 0)
+	|| (tmp->set_in_a < 0 && tmp->get_in_b < 0))
+	{
+		if (tmp->set_in_a >= tmp->get_in_b)
+		{
+			tmp->doubles = tmp->get_in_b;
+			tmp->set_in_a -= tmp->get_in_b;
+			tmp->get_in_b = 0;
+		}
+		else
+		{
+			tmp->doubles = tmp->set_in_a;
+			tmp->get_in_b -= tmp->set_in_a;
+			tmp->set_in_a = 0;
+		}
+	}
+}
+
 void	calculate_sum(t_turns *tmp)
 {
-	tmp->sum = ft_abs(tmp->get_in_b)
-			+ 2 * ft_abs(tmp->set_in_a)
+	tmp->sum = ft_abs(tmp->get_in_b) + ft_abs(tmp->doubles)
+			+ 2 * (ft_abs(tmp->set_in_a) + ft_abs(tmp->doubles))
 			+ ft_abs(tmp->place) + 1;
 }
 
@@ -51,7 +71,7 @@ void	calculate_get_in_b(t_stack *b, t_turns *tmp, int len)
 	int pos;
 
 	pos = get_len(b);
-	if (pos > len / 2)
+	if (pos >= len / 2)
 		tmp->get_in_b = 1 + (len - pos);
 	else
 		tmp->get_in_b = 1 - pos;
@@ -62,8 +82,11 @@ void	calculate_turns(t_stack *a, t_stack *b, t_turns *turns, int len)
 	t_turns	tmp;
 
 	tmp.num = b->num;
+	tmp.doubles = 0;
 	calculate_get_in_b(b, &tmp, len);
 	calculate_set_in_a(a, &tmp, b->num);
+	if (tmp.get_in_b && tmp.set_in_a)
+		calculate_doubles(&tmp);
 	if (turns->sum < 0 || turns->sum > tmp.sum)
 	{
 		turns->sum = tmp.sum;
@@ -71,5 +94,6 @@ void	calculate_turns(t_stack *a, t_stack *b, t_turns *turns, int len)
 		turns->set_in_a = tmp.set_in_a;
 		turns->place = tmp.place;
 		turns->num = tmp.num;
+		turns->doubles = tmp.doubles;
 	}
 }
