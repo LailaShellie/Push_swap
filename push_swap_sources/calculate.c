@@ -14,8 +14,7 @@
 
 void	calculate_doubles(t_turns *tmp)
 {
-	if ((tmp->set_in_a > 0 && tmp->get_in_b > 0)
-	|| (tmp->set_in_a < 0 && tmp->get_in_b < 0))
+	if (tmp->set_in_a > 0 && tmp->get_in_b > 0)
 	{
 		if (tmp->set_in_a >= tmp->get_in_b)
 		{
@@ -28,6 +27,21 @@ void	calculate_doubles(t_turns *tmp)
 			tmp->doubles = tmp->set_in_a;
 			tmp->get_in_b -= tmp->set_in_a;
 			tmp->set_in_a = 0;
+		}
+	}
+	else if (tmp->set_in_a < 0 && tmp->get_in_b < 0)
+	{
+		if (tmp->set_in_a >= tmp->get_in_b)
+		{
+			tmp->doubles = tmp->set_in_a;
+			tmp->get_in_b -= tmp->set_in_a;
+			tmp->set_in_a = 0;
+		}
+		else
+		{
+			tmp->doubles = tmp->get_in_b;
+			tmp->set_in_a -= tmp->get_in_b;
+			tmp->get_in_b = 0;
 		}
 	}
 }
@@ -71,10 +85,17 @@ void	calculate_get_in_b(t_stack *b, t_turns *tmp, int len)
 	int pos;
 
 	pos = get_len(b);
-	if (pos >= len / 2)
+	if (pos == 1 && len == 1)
+		tmp->get_in_b = 0;
+	else if (pos >= len / 2)
+	{
 		tmp->get_in_b = 1 + (len - pos);
+	}
 	else
+	{
+			printf("!!!!!!!!!!!!!!!!!!!%d\n", b->num);
 		tmp->get_in_b = 1 - pos;
+	}
 }
 
 void	calculate_turns(t_stack *a, t_stack *b, t_turns *turns, int len)
