@@ -25,7 +25,7 @@ void	execute_doubles(t_stack **a, t_stack **b, int turns, int flag)
 		if (flag == FIRST)
 		{
 			if (turns > 0)
-				reverse_rotate_all(a, b, PRINT);
+				reverse_rotate_all(a, b, NOPRINT);
 			else
 				rotate_all(a, b, PRINT);
 		}

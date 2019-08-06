@@ -23,8 +23,8 @@ void	push_to_b(t_stack **a, t_stack **b)
 		--len;
 	}
 	solve_three(a, b);
-	show_both(*a, *b);
-	printf("-------\n");
+//	show_both(*a, *b);
+//	printf("-------\n");
 }
 
 void	set_turns(t_stack *a, t_stack *b, t_turns *turns)
@@ -39,8 +39,8 @@ void	set_turns(t_stack *a, t_stack *b, t_turns *turns)
 		calculate_turns(a, cur, turns, len);
 		cur = cur->next;
 	}
-	printf("%d - num\n%d - get_in_b\n%d - set_in_a\n%d - place\n%d - doubles\n--------\n",
-		   turns->num, turns->get_in_b, turns->set_in_a, turns->place, turns->doubles);
+//	printf("TURN\n%d - num\n%d - get_in_b\n%d - set_in_a\n%d - place\n%d - doubles\n%d - sum\n--------\n",
+//		   turns->num, turns->get_in_b, turns->set_in_a, turns->place, turns->doubles, turns->sum);
 }
 
 int 	solve_hundred(t_stack **a, t_stack **b)
@@ -53,7 +53,7 @@ int 	solve_hundred(t_stack **a, t_stack **b)
 		turns.sum = -1;
 		set_turns(*a, *b, &turns);
 		execute(a, b, &turns);
-		show_both(*a, *b);
+//		show_both(*a, *b);
 	}
 	return (1);
 }
