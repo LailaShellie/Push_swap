@@ -29,7 +29,7 @@ int			is_number(char *str)
 {
 	if (!*str)
 		return (0);
-	if (*str == '+' || *str == '-')
+	if ((*str == '+' || *str == '-') && ft_isdigit(*(str + 1)))
 		++str;
 	while (*str)
 	{
@@ -83,13 +83,37 @@ int			check_overflow(char *str)
 	return (1);
 }
 
+int			check_string(char *str)
+{
+	char 	**s;
+	int 	i;
+	int 	ret;
+
+	i = 0;
+	s = ft_strsplit(str, ' ');
+	while (s[i])
+		++i;
+	ret = check_input(i, s);
+	while (i >= 0)
+		free(s[i--]);
+	free(s);
+	return (ret == 0 ? 0 : 1);
+}
+
 int			check_input(int argc, char **argv)
 {
 	int i;
 
 	i = argc;
+	if (i == 2)
+	{
+		if (!check_string(argv[1]))
+			return (0);
+		return (1);
+	}
 	while (--i)
 	{
+
 		if (!(is_number(argv[i])))
 			return (0);
 		else if (!(check_overflow(argv[i])))

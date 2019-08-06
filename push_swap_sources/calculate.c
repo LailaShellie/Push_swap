@@ -67,7 +67,7 @@ void	calculate_set_in_a(t_stack *a, t_turns *tmp, int num)
 		pos++;
 		a = a->next;
 	}
-	if (pos <= len / 2)
+	if (pos < len / 2)
 	{
 		tmp->set_in_a = pos;
 		tmp->place = -1;
@@ -77,7 +77,7 @@ void	calculate_set_in_a(t_stack *a, t_turns *tmp, int num)
 		tmp->set_in_a = pos - len;
 		tmp->place = 0;
 	}
-	calculate_sum(tmp);
+//	calculate_sum(tmp);
 }
 
 void	calculate_get_in_b(t_stack *b, t_turns *tmp, int len)
@@ -107,6 +107,7 @@ void	calculate_turns(t_stack *a, t_stack *b, t_turns *turns, int len)
 	calculate_set_in_a(a, &tmp, b->num);
 	if (tmp.get_in_b && tmp.set_in_a)
 		calculate_doubles(&tmp);
+	calculate_sum(&tmp);
 //	printf("TMP\n%d - num\n%d - get_in_b\n%d - set_in_a\n%d - place\n%d - doubles\n%d - sum\n--------\n",
 //		   tmp.num, tmp.get_in_b, tmp.set_in_a, tmp.place, tmp.doubles, tmp.sum);
 	if (turns->sum < 0 || (turns->sum >= tmp.sum && turns->num < tmp.num))

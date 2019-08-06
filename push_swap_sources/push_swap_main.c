@@ -23,30 +23,60 @@ int		solve(t_stack **a)
 		return (solve_three(a, &b));
 	else
 		return (solve_hundred(a, &b));
-	return (0);
 }
 
-int 	main(int argc, char **argv)
+t_stack	*one_string(char *str)
+{
+	char	**s;
+	int 	i;
+	t_stack *first;
+	t_stack *cur;
+
+	first = 0;
+	i = 0;
+	s = ft_strsplit(str, ' ');
+	while (s[i])
+	{
+		if (!first)
+		{
+			first = new_node(ft_atoi(s[i]));
+			cur = first;
+		}
+		else
+		{
+			cur->next = new_node(ft_atoi(s[i]));
+			cur = cur->next;
+		}
+		++i;
+	}
+	return (first);
+}
+
+int		main(int argc, char **argv)
 {
 	t_stack		*first;
 	t_stack		*cur;
 
 	first = 0;
-	if (argc != 1)
+	if (argc > 1)
 	{
 		if (!(check_input(argc, argv)))
 			return (error(0));
-		while (--argc)
+		if (argc == 2)
+			first = one_string(argv[1]);
+		else
 		{
-			if (!first)
+			while (--argc)
 			{
-				first = new_node(ft_atoi(argv[argc]));
-				cur = first;
-			}
-			else
-			{
-				cur->next = new_node(ft_atoi(argv[argc]));
-				cur = cur->next;
+				if (!first)
+				{
+					first = new_node(ft_atoi(argv[argc]));
+					cur = first;
+				} else
+				{
+					cur->next = new_node(ft_atoi(argv[argc]));
+					cur = cur->next;
+				}
 			}
 		}
 		solve(&first);
