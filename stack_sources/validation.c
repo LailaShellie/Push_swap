@@ -100,6 +100,33 @@ int			check_string(char *str)
 	return (ret == 0 ? 0 : 1);
 }
 
+t_stack	*one_string(char *str)
+{
+	char	**s;
+	int 	i;
+	t_stack *first;
+	t_stack *cur;
+
+	first = 0;
+	i = 0;
+	s = ft_strsplit(str, ' ');
+	while (s[i])
+	{
+		if (!first)
+		{
+			first = new_node(ft_atoi(s[i]));
+			cur = first;
+		}
+		else
+		{
+			cur->next = new_node(ft_atoi(s[i]));
+			cur = cur->next;
+		}
+		++i;
+	}
+	return (first);
+}
+
 int			check_input(int argc, char **argv)
 {
 	int i;

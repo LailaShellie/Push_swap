@@ -25,33 +25,6 @@ int		solve(t_stack **a)
 		return (solve_hundred(a, &b));
 }
 
-t_stack	*one_string(char *str)
-{
-	char	**s;
-	int 	i;
-	t_stack *first;
-	t_stack *cur;
-
-	first = 0;
-	i = 0;
-	s = ft_strsplit(str, ' ');
-	while (s[i])
-	{
-		if (!first)
-		{
-			first = new_node(ft_atoi(s[i]));
-			cur = first;
-		}
-		else
-		{
-			cur->next = new_node(ft_atoi(s[i]));
-			cur = cur->next;
-		}
-		++i;
-	}
-	return (first);
-}
-
 int		main(int argc, char **argv)
 {
 	t_stack		*first;
@@ -72,7 +45,8 @@ int		main(int argc, char **argv)
 				{
 					first = new_node(ft_atoi(argv[argc]));
 					cur = first;
-				} else
+				}
+				else
 				{
 					cur->next = new_node(ft_atoi(argv[argc]));
 					cur = cur->next;
