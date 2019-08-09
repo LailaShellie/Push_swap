@@ -84,14 +84,20 @@ int			main(int argc, char **argv)
 	t_stack		*first;
 
 	first = 0;
-	if (argc == 2)
-		first = one_str_input(argv[1]);
-	else if (argc > 2)
-		first = multi_str_input(argc - 1, &argv[1]);
-	if (first)
+	if (argc > 1)
 	{
-		check(&first);
-		free_stack(&first);
+		if (argc == 2)
+			first = one_str_input(argv[1]);
+		else if (argc > 2)
+			first = multi_str_input(argc - 1, &argv[1]);
+		if (first)
+		{
+			check(&first);
+			free_stack(&first);
+			return (0);
+		}
+		else
+			return (error(0));
 	}
 	write(1, "\n", 1);
 	return (0);

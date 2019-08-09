@@ -36,7 +36,7 @@ PUSH_SWAP_NAME = push_swap
 
 LIB = libft/libft.a
 
-all: $(CHECKER_NAME)
+all: $(CHECKER_NAME) $(PUSH_SWAP_NAME)
 
 $(CHECKER_NAME): $(LIB) $(CHECKER_OBJ) $(STACK_OBJ)
 	gcc -Wall -Wextra -Werror -o $@ -L. $(LIB) $(CHECKER_OBJ) $(STACK_OBJ)

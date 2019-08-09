@@ -28,33 +28,22 @@ int		solve(t_stack **a)
 int		main(int argc, char **argv)
 {
 	t_stack		*first;
-	t_stack		*cur;
 
 	first = 0;
 	if (argc > 1)
 	{
-		if (!(check_input(argc, argv)))
-			return (error(0));
 		if (argc == 2)
-			first = one_string(argv[1]);
-		else
+			first = one_str_input(argv[1]);
+		else if (argc > 2)
+			first = multi_str_input(argc - 1, &argv[1]);
+		if (first)
 		{
-			while (--argc)
-			{
-				if (!first)
-				{
-					first = new_node(ft_atoi(argv[argc]));
-					cur = first;
-				}
-				else
-				{
-					cur->next = new_node(ft_atoi(argv[argc]));
-					cur = cur->next;
-				}
-			}
+			solve(&first);
+			free_stack(&first);
+			return (0);
 		}
-		solve(&first);
-		free_stack(&first);
+		else
+			return (error(0));
 	}
 	write(1, "\n", 1);
 	return (0);

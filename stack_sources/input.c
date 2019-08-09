@@ -66,7 +66,6 @@ t_stack			*make_stack(int num, char **str)
 			cur = cur->next;
 		}
 	}
-	show_both(first, 0);
 	return (first);
 }
 
