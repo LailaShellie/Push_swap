@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <stdlib.h>
 # define BUFF_SIZE 2
 # define MAX_FD 1025
 
@@ -97,5 +98,7 @@ unsigned long int	ft_fast_bit_pow(unsigned long int a,
 int                 get_next_line(const int fd, char **line);
 char                *ft_revstr(char *s);
 int 				ft_abs(int a);
+unsigned int		ft_count_words(const char *s, int c);
+int					free_str(int num, char **str);
 
 #endif

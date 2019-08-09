@@ -25,39 +25,6 @@ int			is_sorted(t_stack *a, t_stack *b)
 	return (1);
 }
 
-int			is_number(char *str)
-{
-	if (!*str)
-		return (0);
-	if ((*str == '+' || *str == '-') && ft_isdigit(*(str + 1)))
-		++str;
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		++str;
-	}
-	return (1);
-}
-
-int			check_duplicates(int argc, char **argv)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (++i < argc)
-	{
-		j = i;
-		while (++j < argc)
-		{
-			if (ft_strcmp(argv[i], argv[j]) == 0)
-				return (0);
-		}
-	}
-	return (1);
-}
-
 int			check_overflow(char *str)
 {
 	t_num	*num;
@@ -79,74 +46,6 @@ int			check_overflow(char *str)
 	free_num(num);
 	free_num(limit);
 	if (res == 1)
-		return (0);
-	return (1);
-}
-
-int			check_string(char *str)
-{
-	char 	**s;
-	int 	i;
-	int 	ret;
-
-	i = 0;
-	s = ft_strsplit(str, ' ');
-	while (s[i])
-		++i;
-	ret = check_input(i, s);
-	while (i >= 0)
-		free(s[i--]);
-	free(s);
-	return (ret == 0 ? 0 : 1);
-}
-
-t_stack	*one_string(char *str)
-{
-	char	**s;
-	int 	i;
-	t_stack *first;
-	t_stack *cur;
-
-	first = 0;
-	i = 0;
-	s = ft_strsplit(str, ' ');
-	while (s[i])
-	{
-		if (!first)
-		{
-			first = new_node(ft_atoi(s[i]));
-			cur = first;
-		}
-		else
-		{
-			cur->next = new_node(ft_atoi(s[i]));
-			cur = cur->next;
-		}
-		++i;
-	}
-	return (first);
-}
-
-int			check_input(int argc, char **argv)
-{
-	int i;
-
-	i = argc;
-	if (i == 2)
-	{
-		if (!check_string(argv[1]))
-			return (0);
-		return (1);
-	}
-	while (--i)
-	{
-
-		if (!(is_number(argv[i])))
-			return (0);
-		else if (!(check_overflow(argv[i])))
-			return (0);
-	}
-	if (!(check_duplicates(argc, argv)))
 		return (0);
 	return (1);
 }

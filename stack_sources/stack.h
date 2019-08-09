@@ -72,6 +72,9 @@ void        		free_num(t_num *lst);
 int					is_number(char *str);
 int					is_sorted(t_stack *a, t_stack *b);
 int					error(t_stack **lst);
-t_stack				*one_string(char *str);
+
+int					check_overflow(char *str);
+t_stack				*multi_str_input(int num, char **str);
+t_stack				*one_str_input(char *str);
 
 #endif

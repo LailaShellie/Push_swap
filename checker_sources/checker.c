@@ -82,31 +82,14 @@ int			check(t_stack **stack)
 int			main(int argc, char **argv)
 {
 	t_stack		*first;
-	t_stack		*cur;
 
 	first = 0;
-	if (argc > 1)
+	if (argc == 2)
+		first = one_str_input(argv[1]);
+	else if (argc > 2)
+		first = multi_str_input(argc - 1, &argv[1]);
+	if (first)
 	{
-		if (!(check_input(argc, argv)))
-			return (error(0));
-		if (argc == 2)
-			first = one_string(argv[1]);
-		else
-		{
-			while (--argc)
-			{
-				if (!first)
-				{
-					first = new_node(ft_atoi(argv[argc]));
-					cur = first;
-				}
-				else
-				{
-					cur->next = new_node(ft_atoi(argv[argc]));
-					cur = cur->next;
-				}
-			}
-		}
 		check(&first);
 		free_stack(&first);
 	}

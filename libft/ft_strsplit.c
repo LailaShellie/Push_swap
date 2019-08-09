@@ -13,24 +13,6 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static unsigned int	ft_count_words(const char *s, int c)
-{
-	int end_of_line;
-	int end_of_word;
-
-	while (*s)
-	{
-		if (*s == 0)
-			return (0);
-		end_of_line = (*s != c && *(s + 1) == 0);
-		end_of_word = (*s != c && *(s + 1) == c);
-		if (end_of_line || end_of_word)
-			return (1 + ft_count_words(++s, c));
-		++s;
-	}
-	return (0);
-}
-
 static unsigned int	ft_wrdlen(const char *s, int c)
 {
 	unsigned int len;
