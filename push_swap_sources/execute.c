@@ -59,7 +59,7 @@ void	remove_border(t_stack **a)
 		cur = cur->next;
 	}
 	if (pos >= get_len(*a) / 2)
-		execute_a(a, -pos);
+		execute_a(a, pos - get_len(*a));
 	else
 		execute_a(a, pos);
 }
