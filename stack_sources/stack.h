@@ -25,9 +25,12 @@
 
 typedef struct			s_turns
 {
-	int					get_in_b;
-	int 				set_in_a;
-	int 				place;
+	int					get_by_rr;
+	int 				get_by_r;
+	int 				set_by_rr;
+	int 				set_by_r;
+	int					exec_b;
+	int					exec_a;
 	int 				doubles;
 	int 				sum;
 	int					num;
@@ -46,7 +49,7 @@ typedef struct		s_stack
 }					t_stack;
 
 void				show_stack(t_stack *stack);
-void				show_both(t_stack *a, t_stack *b);
+void				show_both(FILE *p, t_stack *a, t_stack *b);
 
 t_stack				*new_node(int num);
 void				free_stack(t_stack **stack);

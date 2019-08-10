@@ -39,21 +39,27 @@ void	set_turns(t_stack *a, t_stack *b, t_turns *turns)
 		calculate_turns(a, cur, turns, len);
 		cur = cur->next;
 	}
-//	printf("TURN\n%d - num\n%d - get_in_b\n%d - set_in_a\n%d - place\n%d - doubles\n%d - sum\n--------\n",
-//		   turns->num, turns->get_in_b, turns->set_in_a, turns->place, turns->doubles, turns->sum);
+//	printf("TURN\n%d - num\n%d - exec_b\n%d - exec_a\n%d - sum\n--------\n",
+//		   turns->num, turns->exec_b, turns->exec_a, turns->sum);
 }
 
 int 	solve_hundred(t_stack **a, t_stack **b)
 {
 	t_turns		turns;
+//	FILE *p;
 
+//	p = fopen ("test.txt","w");
 	push_to_b(a, b);
 	while (*b)
 	{
 		turns.sum = -1;
 		set_turns(*a, *b, &turns);
+//		fprintf(p, "TURN\n%d - num\n%d - exec_b\n%d - exec_a\n%d - sum\n--------\n",
+//			   turns.num, turns.exec_b, turns.exec_a, turns.sum);
 		execute(a, b, &turns);
-//		show_both(*a, *b);
+//		show_both(p, *a, *b);
 	}
+	remove_border(a);
+//	show_both(0, *a, *b);
 	return (1);
 }

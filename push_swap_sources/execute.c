@@ -5,89 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshellie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/05 14:08:58 by lshellie          #+#    #+#             */
-/*   Updated: 2019/08/05 14:08:59 by lshellie         ###   ########.fr       */
+/*   Created: 2019/08/10 17:25:41 by lshellie          #+#    #+#             */
+/*   Updated: 2019/08/10 17:25:42 by lshellie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-# define FIRST 1
-# define SECOND 2
-
-void	execute_doubles(t_stack **a, t_stack **b, int turns, int flag)
+void		execute_a(t_stack **a, int turns)
 {
 	int i;
 
 	i = ft_abs(turns);
-	while (i)
+	while (i != 0)
 	{
-		if (flag == FIRST)
-		{
-			if (turns > 0)
-				reverse_rotate_all(a, b, NOPRINT);
-			else
-				rotate_all(a, b, PRINT);
-		}
+		if (turns < 0)
+			rotate_a(a, PRINT);
 		else
-		{
-			if (turns < 0)
-				reverse_rotate_a(a, PRINT);
-			else
-				rotate_a(a, PRINT);
-		}
+			reverse_rotate_a(a, PRINT);
 		--i;
 	}
 }
 
-void	execute_get_in_a(t_stack **a, int turns, int flag)
+void		execute_b(t_stack **b, int turns)
 {
 	int i;
 
 	i = ft_abs(turns);
-	while (i)
+	while (i != 0)
 	{
-		if (flag == FIRST)
-		{
-			if (turns > 0)
-				reverse_rotate_a(a, PRINT);
-			else
-				rotate_a(a, PRINT);
-		}
-		else
-		{
-			if (turns < 0)
-				reverse_rotate_a(a, PRINT);
-			else
-				rotate_a(a, PRINT);
-		}
-		--i;
-	}
-}
-
-void	execute_get_in_b(t_stack **b, int turns)
-{
-	int i;
-
-	i = ft_abs(turns);
-	while (i)
-	{
-		if (turns > 0)
-			reverse_rotate_b(b, PRINT);
-		else
+		if (turns < 0)
 			rotate_b(b, PRINT);
+		else
+			reverse_rotate_b(b, PRINT);
 		--i;
 	}
 }
 
-void	execute(t_stack **a, t_stack **b, t_turns *turns)
+void	remove_border(t_stack **a)
 {
-	execute_doubles(a, b, turns->doubles, FIRST);
-	execute_get_in_b(b, turns->get_in_b);
-	execute_get_in_a(a, turns->set_in_a, FIRST);
+	int			mid;
+	t_stack		*cur;
+	int			pos;
+
+	pos = 0;
+	cur = *a;
+	mid = get_mid(cur);
+	while (cur)
+	{
+		if (cur->num == mid)
+			break;
+		++pos;
+		cur = cur->next;
+	}
+	if (pos >= get_len(*a) / 2)
+		execute_a(a, -pos);
+	else
+		execute_a(a, pos);
+}
+
+void		execute(t_stack **a, t_stack **b, t_turns *turns)
+{
+	execute_b(b, turns->exec_b);
+	execute_a(a, turns->exec_a);
 	push_a(a, b, PRINT);
-	if (turns->place == -1)
-		rotate_a(a, PRINT);
-	execute_doubles(a, b, turns->doubles, SECOND);
-	execute_get_in_a(a, turns->set_in_a, SECOND);
+
 }

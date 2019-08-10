@@ -87,7 +87,7 @@ t_stack			*take_last(t_stack **stack)
 	return (cur);
 }
 
-void			show_both(t_stack *a, t_stack *b)
+void			show_both(FILE *p, t_stack *a, t_stack *b)
 {
 	if (!b && !a)
 		return;
@@ -95,18 +95,18 @@ void			show_both(t_stack *a, t_stack *b)
 	{
 		if (a && !b)
 		{
-			show_both(a->next, 0);
-			printf("%d\t \n", a->num);
+			show_both(p, a->next, 0);
+			p ? fprintf(p,"%d\t \n", a->num) : printf("%d\t \n", a->num);
 		}
 		else if (b && !a)
 		{
-			show_both(0, b->next);
-			printf(" \t%d\n", b->num);
+			show_both(p, 0, b->next);
+			p ? fprintf(p," \t%d\n", b->num) : printf(" \t%d\n", b->num);
 		}
 		else if (a && b)
 		{
-			show_both(a->next, b->next);
-			printf("%d\t%d\n", a->num, b->num);
+			show_both(p, a->next, b->next);
+			p ? fprintf(p,"%d\t%d\n", a->num, b->num) : printf("%d\t%d\n", a->num, b->num);
 		}
 	}
 }
