@@ -68,7 +68,7 @@ int			reverse_rotate_b(t_stack **b, int flag)
 	t_stack		*first;
 	t_stack		*tmp;
 
-	if (!b|| !*b)
+	if (!b || !*b)
 		return (0);
 	if (get_len(*b) == 1)
 		return (1);

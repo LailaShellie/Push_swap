@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+void		execute_doubles(t_stack **a, t_stack **b, int turns)
+{
+	int i;
+
+	i = ft_abs(turns);
+	while (i != 0)
+	{
+		if (turns < 0)
+			rotate_all(a, b, PRINT);
+		else
+			reverse_rotate_all(a, b, PRINT);
+		--i;
+	}
+}
+
 void		execute_a(t_stack **a, int turns)
 {
 	int i;
@@ -42,7 +57,7 @@ void		execute_b(t_stack **b, int turns)
 	}
 }
 
-void	remove_border(t_stack **a)
+void		remove_border(t_stack **a)
 {
 	int			mid;
 	t_stack		*cur;
@@ -54,7 +69,7 @@ void	remove_border(t_stack **a)
 	while (cur)
 	{
 		if (cur->num == mid)
-			break;
+			break ;
 		++pos;
 		cur = cur->next;
 	}
@@ -66,8 +81,8 @@ void	remove_border(t_stack **a)
 
 void		execute(t_stack **a, t_stack **b, t_turns *turns)
 {
+	execute_doubles(a, b, turns->doubles);
 	execute_b(b, turns->exec_b);
 	execute_a(a, turns->exec_a);
 	push_a(a, b, PRINT);
-
 }

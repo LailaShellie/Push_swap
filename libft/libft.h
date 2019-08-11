@@ -95,9 +95,9 @@ unsigned long int	ft_fast_bin_pow(unsigned long int a,
 		unsigned long int b);
 unsigned long int	ft_fast_bit_pow(unsigned long int a,
 		unsigned long int b);
-int                 get_next_line(const int fd, char **line);
-char                *ft_revstr(char *s);
-int 				ft_abs(int a);
+int					get_next_line(const int fd, char **line);
+char				*ft_revstr(char *s);
+int					ft_abs(int a);
 unsigned int		ft_count_words(const char *s, int c);
 int					free_str(int num, char **str);
 

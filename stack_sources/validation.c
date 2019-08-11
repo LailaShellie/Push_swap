@@ -29,7 +29,7 @@ int			check_overflow(char *str)
 {
 	t_num	*num;
 	t_num	*limit;
-	int 	res;
+	int		res;
 
 	if (*str == '-')
 	{

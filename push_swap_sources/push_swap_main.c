@@ -14,8 +14,8 @@
 
 int		solve(t_stack **a)
 {
-	int 	i;
-	t_stack	*b;
+	int			i;
+	t_stack		*b;
 
 	b = 0;
 	i = get_len(*a);

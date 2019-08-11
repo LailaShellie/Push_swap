@@ -12,7 +12,7 @@
 
 #include "checker.h"
 
-int		error_commands(t_command **lst)
+int				error_commands(t_command **lst)
 {
 	if (lst && *lst)
 		free_commands(lst);
@@ -48,7 +48,7 @@ void			free_commands(t_command **lst)
 
 int				check_commands(char *str)
 {
-	return  (!ft_strcmp("sa", str) || !ft_strcmp("sb", str) ||
+	return (!ft_strcmp("sa", str) || !ft_strcmp("sb", str) ||
 		!ft_strcmp("ss", str) || !ft_strcmp("pa", str) ||
 		!ft_strcmp("pb", str) || !ft_strcmp("ra", str) ||
 		!ft_strcmp("rb", str) || !ft_strcmp("rr", str) ||
@@ -63,7 +63,7 @@ void			make_commands(t_command **lst, char *str)
 	if (!*lst)
 	{
 		*lst = new_command(str);
-		return;
+		return ;
 	}
 	cur = *lst;
 	while (cur->next)

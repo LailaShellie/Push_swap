@@ -14,7 +14,7 @@
 
 static int			get_num_len(t_num *lst)
 {
-	int 	len;
+	int		len;
 
 	len = 0;
 	while (lst)
@@ -25,9 +25,9 @@ static int			get_num_len(t_num *lst)
 	return (len);
 }
 
-static t_num       *new_num(char c)
+static t_num		*new_num(char c)
 {
-	t_num   *new;
+	t_num	*new;
 
 	if (!(new = (t_num *)malloc(sizeof(t_num))))
 		return (0);
@@ -36,38 +36,38 @@ static t_num       *new_num(char c)
 	return (new);
 }
 
-void        		free_num(t_num *lst)
+void				free_num(t_num *lst)
 {
 	t_num *tmp;
 
 	while (lst)
-    {
+	{
 		tmp = lst;
 		lst = lst->next;
 		free(tmp);
 	}
 }
 
-t_num       		*make_num(char *str)
+t_num				*make_num(char *str)
 {
-	t_num   *cur;
-	t_num   *first;
+	t_num	*cur;
+	t_num	*first;
 
 	first = 0;
 	while (*str)
 	{
 		if (first == 0)
 		{
-		first = new_num(*str);
+			first = new_num(*str);
 			cur = first;
 		}
 		else
 		{
 			cur->next = new_num(*str);
 			cur = cur->next;
-        }
-        ++str;
-    }
+		}
+		++str;
+	}
 	return (first);
 }
 
@@ -84,5 +84,5 @@ int					compare_nums(t_num *num1, t_num *num2)
 		num1 = num1->next;
 		num2 = num2->next;
 	}
-	return (0)
-;}
+	return (0);
+}

@@ -54,14 +54,14 @@ int		calculate_top(t_stack *a, t_turns *tmp, int len)
 	while (a)
 	{
 		if (a->num == mid)
-			break;
+			break ;
 		++pos;
 		a = a->next;
 	}
 	while (a)
 	{
 		if (a->num < tmp->num)
-			break;
+			break ;
 		++pos;
 		a = a->next;
 	}

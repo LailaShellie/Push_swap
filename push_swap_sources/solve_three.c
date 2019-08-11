@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-# define SA_CASE 1
-# define RRA_CASE 2
-# define RA_CASE 3
+#define SA_CASE 1
+#define RRA_CASE 2
+#define RA_CASE 3
 
-int 	compare(t_stack **a, t_stack **b)
+int		compare(t_stack **a, t_stack **b)
 {
 	int top;
 	int bot;
@@ -38,7 +38,7 @@ int 	compare(t_stack **a, t_stack **b)
 	return (0);
 }
 
-int 	solve_three(t_stack **a, t_stack **b)
+int		solve_three(t_stack **a, t_stack **b)
 {
 	int res;
 

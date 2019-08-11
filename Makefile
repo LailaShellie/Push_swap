@@ -39,9 +39,9 @@ LIB = libft/libft.a
 all: $(CHECKER_NAME) $(PUSH_SWAP_NAME)
 
 $(CHECKER_NAME): $(LIB) $(CHECKER_OBJ) $(STACK_OBJ)
-	gcc -Wall -Wextra -Werror -o $@ -L. $(LIB) $(CHECKER_OBJ) $(STACK_OBJ)
+	gcc -Wall -Wextra -Werror -g -o $@ -L. $(LIB) $(CHECKER_OBJ) $(STACK_OBJ)
 $(PUSH_SWAP_NAME): $(PUSH_SWAP_OBJ)
-	gcc -Wall -Wextra -Werror -o $@ -L. $(LIB) $(PUSH_SWAP_OBJ) $(STACK_OBJ)
+	gcc -Wall -Wextra -Werror -g -o $@ -L. $(LIB) $(PUSH_SWAP_OBJ) $(STACK_OBJ)
 $(STACK_OBJ):
 	gcc -I $(STACK_HEADER) -c $(STACK_SRC)
 $(CHECKER_OBJ):

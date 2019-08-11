@@ -12,7 +12,7 @@
 
 #include "stack.h"
 
-int			is_number(char *str)
+int				is_number(char *str)
 {
 	if (!*str)
 		return (0);
@@ -27,7 +27,7 @@ int			is_number(char *str)
 	return (1);
 }
 
-int			check_duplicates(int argc, char **argv)
+int				check_duplicates(int argc, char **argv)
 {
 	int i;
 	int j;
@@ -71,11 +71,11 @@ t_stack			*make_stack(int num, char **str)
 
 t_stack			*one_str_input(char *str)
 {
-	char	**s;
-	int 	i;
-	int 	num;
-	int 	ret;
-	t_stack	*stack;
+	char		**s;
+	int			i;
+	int			num;
+	int			ret;
+	t_stack		*stack;
 
 	ret = 1;
 	i = ft_count_words(str, ' ');
@@ -99,10 +99,11 @@ t_stack			*one_str_input(char *str)
 
 t_stack			*multi_str_input(int num, char **str)
 {
-	int i;
-	t_stack	*stack;
+	int			i;
+	t_stack		*stack;
 
 	i = num;
+	stack = 0;
 	while (--i >= 0)
 	{
 		if (!(is_number(str[i])))

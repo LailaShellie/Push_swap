@@ -12,31 +12,58 @@
 
 #include "push_swap.h"
 
+void	calculate_doubles(t_turns *tmp)
+{
+	int t;
+
+	if (tmp->exec_a > 0 && tmp->exec_b > 0)
+	{
+		tmp->doubles = tmp->exec_b < tmp->exec_a ? tmp->exec_b : tmp->exec_a;
+		t = tmp->exec_b;
+		tmp->exec_b -= tmp->exec_b < tmp->exec_a ? tmp->exec_b : tmp->exec_a;
+		tmp->exec_a -= tmp->exec_a < t ? tmp->exec_a : t;
+	}
+	else if (tmp->exec_a < 0 && tmp->exec_b < 0)
+	{
+		tmp->doubles = tmp->exec_b < tmp->exec_a ? tmp->exec_a : tmp->exec_b;
+		t = tmp->exec_b;
+		tmp->exec_b -= tmp->exec_b < tmp->exec_a ? tmp->exec_a : t;
+		tmp->exec_a -= tmp->exec_a < t ? t : tmp->exec_a;
+	}
+	tmp->sum = ft_abs(tmp->doubles) + ft_abs(tmp->exec_b) + ft_abs(tmp->exec_a);
+}
+
 void	calculate_sum(t_turns *tmp)
 {
 	tmp->sum = 0;
-	tmp->sum += tmp->set_by_r >= tmp->set_by_rr ? tmp->set_by_rr : tmp->set_by_r;
-	tmp->exec_a = tmp->set_by_r >= tmp->set_by_rr ? tmp->set_by_rr : -tmp->set_by_r;
-	tmp->sum += tmp->get_by_r >= tmp->get_by_rr ? tmp->get_by_rr : tmp->get_by_r;
-	tmp->exec_b = tmp->get_by_r >= tmp->get_by_rr ? tmp->get_by_rr : -tmp->get_by_r;
+	tmp->doubles = 0;
+	tmp->sum += tmp->set_by_r >= tmp->set_by_rr
+			? tmp->set_by_rr : tmp->set_by_r;
+	tmp->exec_a = tmp->set_by_r >= tmp->set_by_rr
+			? tmp->set_by_rr : -tmp->set_by_r;
+	tmp->sum += tmp->get_by_r >= tmp->get_by_rr
+			? tmp->get_by_rr : tmp->get_by_r;
+	tmp->exec_b = tmp->get_by_r >= tmp->get_by_rr
+			? tmp->get_by_rr : -tmp->get_by_r;
+	calculate_doubles(tmp);
 }
 
 void	calculate_set(t_stack *a, t_turns *tmp)
 {
-	int 	pos;
-	int 	len;
+	int		pos;
+	int		len;
 
 	len = get_len(a);
 	pos = 0;
 	if (!is_sorted(a, 0))
 	{
 		calculate_with_borders(a, tmp, len);
-		return;
+		return ;
 	}
 	while (a)
 	{
 		if (a->num < tmp->num)
-			break;
+			break ;
 		++pos;
 		a = a->next;
 	}
@@ -61,13 +88,12 @@ void	calculate_turns(t_stack *a, t_stack *b, t_turns *turns, int len)
 	calculate_get(b, &tmp, len);
 	calculate_set(a, &tmp);
 	calculate_sum(&tmp);
-//	printf("TMP\n%d - num\n%d - exec_b\n%d - exec_a\n%d - sum\n--------\n",
-//		   tmp.num, tmp.exec_b, tmp.exec_a, tmp.sum);
 	if (turns->sum < 0 || turns->sum >= tmp.sum)
 	{
 		turns->num = tmp.num;
 		turns->exec_a = tmp.exec_a;
 		turns->exec_b = tmp.exec_b;
 		turns->sum = tmp.sum;
+		turns->doubles = tmp.doubles;
 	}
 }

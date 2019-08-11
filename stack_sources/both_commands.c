@@ -26,7 +26,7 @@ int			rotate_all(t_stack **a, t_stack **b, int flag)
 	return (rotate_a(a, NOPRINT) + rotate_b(b, NOPRINT));
 }
 
-int 		reverse_rotate_all(t_stack **a, t_stack **b, int flag)
+int			reverse_rotate_all(t_stack **a, t_stack **b, int flag)
 {
 	if (flag == PRINT)
 		ft_putstr("rrr\n");

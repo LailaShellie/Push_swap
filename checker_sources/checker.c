@@ -62,16 +62,20 @@ int			check(t_stack **stack)
 
 	com = 0;
 	str = 0;
-    while (get_next_line(0, &str))
-    {
+	while (get_next_line(0, &str))
+	{
 		if (str && ft_strcmp("", str) == 0)
-			break;
+			break ;
 		if (str && !(check_commands(str)))
+		{
+			free(str);
 			return (error_commands(&com));
+		}
 		else if (str)
 			make_commands(&com, str);
 		free(str);
 	}
+	free(str);
 	if (!(try_solve(stack, &com)))
 		ft_putstr("KO\n");
 	else
