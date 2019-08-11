@@ -19,10 +19,14 @@ int		solve(t_stack **a)
 
 	b = 0;
 	i = get_len(*a);
-	if (i <= 3)
-		return (solve_three(a, &b));
-	else
-		return (solve_hundred(a, &b));
+	if (!is_sorted(*a, b))
+	{
+		if (i <= 3)
+			return (solve_three(a, &b));
+		else
+			return (solve_hundred(a, &b));
+	}
+	return (0);
 }
 
 int		main(int argc, char **argv)

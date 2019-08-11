@@ -74,8 +74,9 @@ int			check(t_stack **stack)
 		else if (str)
 			make_commands(&com, str);
 		free(str);
+		str = 0;
 	}
-	free(str);
+	str ? free(str) : 0;
 	if (!(try_solve(stack, &com)))
 		ft_putstr("KO\n");
 	else

@@ -44,9 +44,6 @@ typedef struct		s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-void				show_stack(t_stack *stack);
-void				show_both(FILE *p, t_stack *a, t_stack *b);
-
 t_stack				*new_node(int num);
 void				free_stack(t_stack **stack);
 int					get_len(t_stack *stack);

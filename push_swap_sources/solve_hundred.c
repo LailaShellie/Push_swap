@@ -50,6 +50,7 @@ int			solve_hundred(t_stack **a, t_stack **b)
 		set_turns(*a, *b, &turns);
 		execute(a, b, &turns);
 	}
-	remove_border(a);
+	if (!is_sorted(*a, *b))
+		remove_border(a);
 	return (1);
 }
