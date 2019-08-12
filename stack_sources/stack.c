@@ -26,14 +26,16 @@ t_stack			*new_node(int num)
 void			free_stack(t_stack **stack)
 {
 	t_stack		*cur;
+	t_stack		*tmp;
 
 	if (!stack || !*stack)
 		return ;
 	cur = *stack;
 	while (cur)
 	{
+		tmp = cur->next;
 		free(cur);
-		cur = cur->next;
+		cur = tmp;
 	}
 	*stack = 0;
 }

@@ -104,6 +104,6 @@ int			main(int argc, char **argv)
 		else
 			return (error(0));
 	}
-	write(1, "\n", 1);
+	ft_putstr("usage: checker [numbers]\n");
 	return (0);
 }
