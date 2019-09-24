@@ -67,6 +67,7 @@ void		draw(t_mlx *mlx)
 	t_stack		*a;
 	t_stack		*b;
 	int 		step;
+	char 		*str;
 
 	step = 0;
 	ft_bzero(mlx->img->data, WIDTH * HEIGHT * 4);
@@ -83,7 +84,9 @@ void		draw(t_mlx *mlx)
 		++step;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
-	mlx_string_put(mlx->mlx, mlx->win, 5, 3, set_colors(0, 255, 255, 255), ft_itoa(mlx->step));
+	str = ft_itoa(mlx->step);
+	mlx_string_put(mlx->mlx, mlx->win, 5, 3, set_colors(0, 255, 255, 255), str);
+	free(str);
 }
 
 
