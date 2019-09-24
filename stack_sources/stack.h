@@ -40,6 +40,9 @@ typedef struct		s_num
 typedef struct		s_stack
 {
 	int				num;
+	int				color;
+	int				width;
+	int				height;
 	struct s_stack	*next;
 }					t_stack;
 

@@ -12,6 +12,15 @@
 
 #include "checker.h"
 
+int		free_mlx(t_mlx *mlx)
+{
+	free_commands(&mlx->com);
+	free_stack(&mlx->a);
+	free_stack(&mlx->b);
+	free(mlx);
+	return (0);
+}
+
 void		exec(t_stack **a, t_stack **b, char *str)
 {
 	if (ft_strcmp("sa", str) == 0)
@@ -38,46 +47,42 @@ void		exec(t_stack **a, t_stack **b, char *str)
 		reverse_rotate_all(a, b, NOPRINT);
 }
 
-int			try_solve(t_stack **a, t_command **com)
+int			try_solve(t_mlx *mlx)
 {
-	t_stack			*b;
 	t_command		*cur_com;
 
-	cur_com = *com;
-	b = 0;
+	if (mlx->flag)
+		visualization(mlx);
+	cur_com = mlx->com;
 	while (cur_com)
 	{
-		exec(a, &b, cur_com->str);
+		exec(&mlx->a, &mlx->b, cur_com->str);
 		cur_com = cur_com->next;
 	}
-	if (!(is_sorted(*a, b)))
+	if (!(is_sorted(mlx->a, mlx->b)))
 		return (0);
 	return (1);
 }
 
-int			check(t_stack **stack)
+int			check(t_mlx *mlx)
 {
 	char		*str;
-	t_command	*com;
 
-	com = 0;
 	str = 0;
 	while (get_next_line(0, &str))
 	{
-		if (str && ft_strcmp("", str) == 0)
-			break ;
 		if (str && !(check_commands(str)))
 		{
 			free(str);
-			return (error_commands(&com));
+			return (error_commands(&mlx->com));
 		}
 		else if (str)
-			make_commands(&com, str);
+			make_commands(&mlx->com, str);
 		free(str);
 		str = 0;
 	}
 	str ? free(str) : 0;
-	if (!(try_solve(stack, &com)))
+	if (!(try_solve(mlx)))
 		ft_putstr("KO\n");
 	else
 		ft_putstr("OK\n");
@@ -86,24 +91,31 @@ int			check(t_stack **stack)
 
 int			main(int argc, char **argv)
 {
-	t_stack		*first;
+	t_mlx		*mlx;
 
-	first = 0;
+	if (!(mlx = (t_mlx *)ft_memalloc(sizeof(t_mlx))))
+		return (0);
 	if (argc > 1)
 	{
+		if (ft_strcmp(argv[1], "-v") == 0)
+			mlx->flag = 1;
 		if (argc == 2)
-			first = one_str_input(argv[1]);
+			mlx->a = one_str_input(argv[1]);
 		else if (argc > 2)
-			first = multi_str_input(argc - 1, &argv[1]);
-		if (first)
+			mlx->a = multi_str_input(argc - 1 - mlx->flag, &argv[1 + mlx->flag]);
+		if (mlx->a)
 		{
-			check(&first);
-			free_stack(&first);
+			check(mlx);
+			free_mlx(mlx);
 			return (0);
 		}
 		else
+		{
+			free_mlx(mlx);
 			return (error(0));
+		}
 	}
-	ft_putstr("usage: checker [numbers]\n");
+	else
+		ft_putstr("usage: checker [numbers]\n");
 	return (0);
 }
