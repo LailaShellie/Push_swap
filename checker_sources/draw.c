@@ -94,10 +94,10 @@ int			make_step(t_mlx *mlx)
 {
 	if (mlx->cur_com)
 	{
+		++mlx->step;
 		exec(&mlx->a, &mlx->b, mlx->cur_com->str);
 		draw(mlx);
 		mlx->cur_com = mlx->cur_com->next;
-		++mlx->step;
 	}
 	return (1);
 }
