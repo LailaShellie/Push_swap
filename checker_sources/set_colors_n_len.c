@@ -42,7 +42,7 @@ int		set_colors(unsigned char o, unsigned char r, \
 	return (res);
 }
 
-int		set_all(int *mas, t_mlx *mlx, int grad, int width)
+int			set_all(int *mas, t_mlx *mlx, float grad, int width)
 {
 	int		i;
 	t_stack	*cur;
@@ -55,7 +55,7 @@ int		set_all(int *mas, t_mlx *mlx, int grad, int width)
 		{
 			if (cur->num == mas[i])
 			{
-				cur->color = set_colors(0, i, 0, 255) * grad;
+				cur->color = set_colors(0, ((float)i) * grad, 0, 255);
 				cur->width = i * width;
 			}
 			cur = cur->next;
@@ -107,7 +107,7 @@ int			set_colors_n_len(t_mlx *mlx)
 	int 	width;
 
 	mlx->len = get_len(mlx->a);
-	grad = 1;
+	grad = 255 / (float)mlx->len;
 	width = WIDTH / (2 * mlx->len);
 	if (!(mas = (int *)ft_memalloc(sizeof(int) * mlx->len)))
 		return (0);
