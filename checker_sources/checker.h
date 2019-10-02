@@ -17,8 +17,8 @@
 # include "../stack_sources/stack.h"
 # include "../mlx/mlx.h"
 # include <stdio.h>
-# define WIDTH 2000
-# define HEIGHT 1000
+# define WIDTH 1000
+# define HEIGHT 600
 
 typedef struct			s_command
 {
