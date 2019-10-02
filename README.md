@@ -1,7 +1,7 @@
 # School 21 project
 ##### The second project of the algorithm branch
 ## Push_swap
-##### The goal of this project was to sort numbers using two stacks using only 11 operations to operate stacks.
+##### The goal of this project was to sort numbers using two stacks with only 11 operations to operate stacks.
 ---
 ### Compiling
 Compile only on **OS X**
