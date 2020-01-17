@@ -6,4 +6,4 @@
 ### Compiling
 Compile only on **OS X**
 Use `make` and run with `./test`
-![Example](https://github.com/LailaShellie/Push_swap/blob/master/gif/video.gif)
+![Example](https://github.com/LailaShellie/gifs/blob/master/gif_push_swap/video.gif)
