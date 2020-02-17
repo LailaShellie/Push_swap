@@ -72,5 +72,7 @@ int					error(t_stack **lst);
 int					check_overflow(char *str);
 t_stack				*multi_str_input(int num, char **str);
 t_stack				*one_str_input(char *str);
+void				copy_mas(int *mas, t_stack *a);
+void				bubble_sort(int *mas, int len);
 
 #endif
