@@ -15,31 +15,7 @@
 int		set_colors(unsigned char o, unsigned char r, \
 			unsigned char g, unsigned char b)
 {
-	int i;
-	int tmp;
-	int res;
-	int j;
-
-	i = 0;
-	res = 0;
-	tmp = 0;
-	j = 0;
-	while (i <= 31)
-	{
-		tmp = (i >= 0 && i <= 7) ? b : tmp;
-		tmp = (i >= 8 && i <= 15) ? g : tmp;
-		tmp = (i >= 16 && i <= 23) ? r : tmp;
-		tmp = (i >= 24 && i <= 31) ? o : tmp;
-		j = 0;
-		while (j <= 7)
-		{
-			if (tmp & (1 << j))
-				res |= 1 << i;
-			++i;
-			++j;
-		}
-	}
-	return (res);
+	return ((int)o << 24 | (int)r << 16 | (int)g << 8 | (int)b);
 }
 
 int			set_all(int *mas, t_mlx *mlx, float grad, int width)
@@ -64,42 +40,6 @@ int			set_all(int *mas, t_mlx *mlx, float grad, int width)
 	return (0);
 }
 
-void		copy_mas(int *mas, t_mlx *mlx)
-{
-	t_stack		*cur;
-	int 		i;
-
-	i = 0;
-	cur = mlx->a;
-	while (cur)
-	{
-		mas[i++] = cur->num;
-		cur = cur->next;
-	}
-}
-
-void		bubble_sort(int *mas, int len)
-{
-	int 	i;
-	int 	j;
-	int 	tmp;
-
-	i = -1;
-	while (++i < len)
-	{
-		j = -1;
-		while (++j < len - i - 1)
-		{
-			if (mas[j] > mas[j + 1])
-			{
-				tmp = mas[j];
-				mas[j] = mas[j + 1];
-				mas[j + 1] = tmp;
-			}
-		}
-	}
-}
-
 int			set_colors_n_len(t_mlx *mlx)
 {
 	int 	*mas;
@@ -111,7 +51,7 @@ int			set_colors_n_len(t_mlx *mlx)
 	width = WIDTH / (2 * mlx->len);
 	if (!(mas = (int *)ft_memalloc(sizeof(int) * mlx->len)))
 		return (0);
-	copy_mas(mas, mlx);
+	copy_mas(mas, mlx->a);
 	bubble_sort(mas, mlx->len);
 	set_all(mas, mlx, grad, width);
 	free(mas);

@@ -12,17 +12,46 @@
 
 #include "push_swap.h"
 
+int			get_median(t_stack *a)
+{
+	int	len;
+	int	*mas;
+	int ret;
+
+	len = get_len(a);
+	if (!(mas = (int *)ft_memalloc(sizeof(int) * len)))
+		return (0);
+	copy_mas(mas, a);
+	bubble_sort(mas, len);
+	ret = mas[(len - 1) >> 1];
+	free(mas);
+//	printf("%d\n", ret);
+	return (ret);
+}
+
 void		push_to_b(t_stack **a, t_stack **b)
 {
 	int			len;
+	int 		i;
+	int 		median;
 
 	len = get_len(*a);
-	while (len > 3)
+	if (len == 1)
+		return ;
+	i = len;
+	get_median(*a);
+	while (i >= len / 2)
 	{
-		push_b(a, b, PRINT);
-		--len;
+		if (find_last(*a)->num >= median)
+		{
+			push_b(a, b, PRINT);
+			--i;
+		}
+		else
+			reverse_rotate_a(a, PRINT);
 	}
-	solve_three(a, b);
+	push_to_b(a, b);
+//	solve_three(a, b);
 }
 
 void		set_turns(t_stack *a, t_stack *b, t_turns *turns)
